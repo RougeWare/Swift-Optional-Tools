@@ -2,14 +2,34 @@ import XCTest
 @testable import OptionalTools
 
 final class OptionalToolsTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(OptionalTools().text, "Hello, World!")
+    
+    func testUnwrappedOrThrow() {
+        let hasValue: Int? = 1
+        let noValue: Int? = nil
+        
+        XCTAssertNoThrow(try hasValue.unwrappedOrThrow())
+        XCTAssertEqual(try hasValue.unwrappedOrThrow(), 1)
+        
+        XCTAssertNoThrow(try hasValue.unwrappedOrThrow(error: TestError()))
+        XCTAssertEqual(try hasValue.unwrappedOrThrow(error: TestError()), 1)
+        
+        XCTAssertThrowsError(try noValue.unwrappedOrThrow())
+        XCTAssertThrowsError(try noValue.unwrappedOrThrow()) { error in
+            XCTAssertTrue(error is UnexpectedlyFoundNilError)
+        }
+        
+        XCTAssertThrowsError(try noValue.unwrappedOrThrow(error: TestError()))
+        XCTAssertThrowsError(try noValue.unwrappedOrThrow(error: TestError())) { error in
+            XCTAssertTrue(error is TestError)
+        }
     }
-
+    
+    
     static var allTests = [
-        ("testExample", testExample),
+        ("testUnwrappedOrThrow", testUnwrappedOrThrow),
     ]
 }
+
+
+
+private struct TestError: Error {}
