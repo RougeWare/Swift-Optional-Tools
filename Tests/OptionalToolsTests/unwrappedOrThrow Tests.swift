@@ -1,7 +1,7 @@
 import XCTest
 @testable import OptionalTools
 
-final class OptionalToolsTests: XCTestCase {
+final class UnwrappedOrThrow_Tests: XCTestCase {
     
     func testUnwrappedOrThrow() {
         let hasValue: Int? = 1

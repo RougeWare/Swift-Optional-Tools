@@ -1,5 +1,5 @@
 //
-//  Unwrap or throw.swift
+//  unwrappedOrThrow.swift
 //  OptionalTools
 //
 //  Created by Ben Leggiero on 2019-12-10.
