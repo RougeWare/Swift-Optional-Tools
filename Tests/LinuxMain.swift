@@ -2,6 +2,7 @@ import XCTest
 
 import OptionalToolsTests
 
-var tests = [XCTestCaseEntry]()
-tests += OptionalToolsTests.allTests()
-XCTMain(tests)
+XCTMain([
+    UnwrappedOrThrow_Tests.allTests,
+    Optional_operators_Tests.allTests,
+])
