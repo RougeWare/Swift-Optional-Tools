@@ -12,8 +12,14 @@ let package = Package(
             name: "OptionalTools",
             targets: ["OptionalTools"]),
         
+        // DEPRECATED: Does not play nice with App Store requirements
         .library(
             name: "OptionalTools_dynamic",
+            type: .dynamic,
+            targets: ["OptionalTools"]),
+        
+        .library(
+            name: "OptionalToolsDynamic",
             type: .dynamic,
             targets: ["OptionalTools"]),
     ],
